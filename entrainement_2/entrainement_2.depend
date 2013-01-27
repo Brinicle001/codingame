@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1359300520 source:/home/koulben/Développements/codingame/entrainement_2/main.cpp
+	<iostream>
+	<string>
+	<stdlib.h>
+
