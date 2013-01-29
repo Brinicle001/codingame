@@ -1,3 +1,5 @@
+// CodinGame - Entrainement 2
+
 #include <iostream>
 #include <string>
 #include <stdlib.h>
