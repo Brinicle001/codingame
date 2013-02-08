@@ -1,53 +1,61 @@
 // CodinGame - Session du 29/01/2013 - Test 1
 
 #include <iostream>
+#include <iomanip>
+#include <sstream>
 #include <string>
-#include <stdlib.h>
+#include <bitset>
 
 #define MAX_INPUT 100
 using namespace std;
 
+string chuck_conversion(const unsigned char* buffer, const size_t size);
+string chuck_conversion(const string buffer);
 
-int main()
+string chuck_conversion(const unsigned char* buffer, const size_t size)
 {
-    unsigned short bFlags=0x00;
-    unsigned short bMask=0x40;
-    char oneCar;
-    int nBit=0,tBit=1;
+    ostringstream oss;
+    string bitView;
+    char tBit='\0';
 
-    cin >> oneCar;
-    for(int i=0; i<7; i++)
+    for(size_t i=0; i<size; i++)
     {
-         if (((tBit & 0x01) != (oneCar & bMask)) || (i == 0))
+        bitView = bitset<sizeof(unsigned char)*7>(buffer[i]).to_string();
+        for(int i=0; i<7; i++)
+        {
+            if (tBit!=(char)bitView[i])
             {
-            if (i > 0){
-                if (tBit == 1)
+                if (tBit!='\0')
                 {
-                    cout << "0 ";
+                    oss <<" ";
+                }
+                tBit=(char)bitView[i];
+                if (tBit=='1')
+                {
+                    oss <<"0 ";
                 }
                 else
                 {
-                    cout << "00 ";
+                    oss <<"00 ";
                 }
-                for(int j=0; j<nBit; j++)
-                {
-                    cout << "0";
-                }
+
             }
-                if (oneCar & bMask)
-                {
-                    tBit=1;
-                }else{
-                    tBit=0;
-                }
-                nBit=1;
-            }
+            oss<<"0";
         }
-        else
-        {
-            nBit++;
-        }
-        oneCar=oneCar<< 1;
     }
+    return oss.str();
+}
+
+string chuck_conversion(const string buffer)
+{
+    return chuck_conversion((unsigned char*)buffer.c_str(),buffer.size());
+}
+
+
+int main()
+{
+    string in;
+    cin >> in;
+    cout << chuck_conversion((unsigned char*)in.c_str(),in.size()) << endl;
     return 0;
 }
