@@ -1,61 +1,61 @@
 // CodinGame - Session du 29/01/2013 - Test 1
 
 #include <iostream>
-#include <iomanip>
-#include <sstream>
 #include <string>
 #include <bitset>
 
-#define MAX_INPUT 100
 using namespace std;
 
-string chuck_conversion(const unsigned char* buffer, const size_t size);
-string chuck_conversion(const string buffer);
+ostream &chuck_conversion(ostream &out, const unsigned char c, unsigned char &tBit);
+ostream &chuck_conversion(ostream &out, istream &in);
 
-string chuck_conversion(const unsigned char* buffer, const size_t size)
+
+ostream &chuck_conversion(ostream &out, const unsigned char c, unsigned char &tBit)
 {
-    ostringstream oss;
     string bitView;
-    char tBit='\0';
 
-    for(size_t i=0; i<size; i++)
+    bitView = bitset<sizeof(unsigned char)*7>(c).to_string();
+    for(int i=0; i<7; i++)
     {
-        bitView = bitset<sizeof(unsigned char)*7>(buffer[i]).to_string();
-        for(int i=0; i<7; i++)
+        if (tBit!=(unsigned char)bitView[i])
         {
-            if (tBit!=(char)bitView[i])
+            if ((tBit=='0') || (tBit=='1'))
             {
-                if (tBit!='\0')
-                {
-                    oss <<" ";
-                }
-                tBit=(char)bitView[i];
-                if (tBit=='1')
-                {
-                    oss <<"0 ";
-                }
-                else
-                {
-                    oss <<"00 ";
-                }
-
+                out << " ";
             }
-            oss<<"0";
+            tBit=(unsigned char)bitView[i];
+            if (tBit=='1')
+            {
+                out << "0 ";
+            }
+            else
+            {
+                out << "00 ";
+            }
+
+        }
+        out << "0";
+    }
+    return out;
+}
+
+ostream &chuck_conversion(ostream &out, istream &in)
+{
+    unsigned char c,tBit='\n';
+    while(!in.eof())
+    {
+        c = in.get();
+        if ((in.good()) && (c!='\n'))
+        {
+            chuck_conversion(out, c,tBit);
         }
     }
-    return oss.str();
+    return out;
 }
-
-string chuck_conversion(const string buffer)
-{
-    return chuck_conversion((unsigned char*)buffer.c_str(),buffer.size());
-}
-
 
 int main()
 {
-    string in;
-    cin >> in;
-    cout << chuck_conversion((unsigned char*)in.c_str(),in.size()) << endl;
+    chuck_conversion(cout, cin);
+    cout << endl;
     return 0;
 }
