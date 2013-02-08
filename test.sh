@@ -32,7 +32,7 @@ do
     test_out=`echo ${test_in} | sed -e "s#\/in#\/out#"`
     echo "./${binary} < ${test_in} | tee out.txt; diff out.txt ${test_out}"
     ./${binary} < ${test_in} | tee out.txt 
-    diff out.txt ${test_out} 1>/dev/null
+    diff -B --suppress-common-lines out.txt ${test_out}
     ok=$?
     if [ "${ok}" = "0" ]
     then
