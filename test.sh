@@ -1,57 +1,59 @@
 #!/bin/bash
-# $1 = solution's dir to test
+# $1 = binary to test
+# $2 = tests dir
+# $3 = test number
 
-testing_dir=../../test
+binary="$1"
+test_dir="$2"
+test_number="$3"
+test_in="${test_dir}/in${test_number}.txt"
+test_out="${test_dir}/out${test_number}.txt"
+test_result="out_$$.txt"
 
-if [ ! -d "$1" ]
+if [ ! -f "${binary}" ]
 then
-    echo "Seems the directory '$1' doesn't even exist."
+    echo "Seems the binary '${binary}' doesn't exist."
     exit 1
 fi
-cd "$1"
-binary=`ls -1 | head -n1`
 if [ ! -x "${binary}" ]
 then
-    echo "Seems the directory '$1' doesn't contain a solution."
+    echo "Seems the binary '${binary}' is not executable."
     exit 1
 fi
-if [ ! -f "${testing_dir}/in1.txt" ]
+if [ ! -d "${test_dir}" ]
 then
-    echo "Seems the directory 'test' doesn't contain a test."
+    echo "Seems the directory '${test_dir}' doesn't exist."
     exit 1
 fi
-if [ ! -f "${testing_dir}/out1.txt" ]
+if [ -z "${test_number}" ]
 then
-    echo "Seems the directory 'test' doesn't contain a solution reference."
+    echo "Seems the test number was not given."
+    exit 1
+fi
+if [ ! -f "${test_in}" ]
+then
+    echo "Seems the test '${test_number}' doesn't have an input file."
+    exit 1
+fi
+if [ ! -f "${test_out}" ]
+then
+    echo "Seems the '${test_number}' doesn't have an output file."
     exit 1
 fi
 
-all_ok="0"
-for test_in in `ls ${testing_dir}/in*.txt`
-do
-    test_out=`echo ${test_in} | sed -e "s#\/in#\/out#"`
-    echo "./${binary} < ${test_in} | tee out.txt; diff out.txt ${test_out}"
-    ./${binary} < ${test_in} | tee out.txt 
-    diff -B --suppress-common-lines out.txt ${test_out}
-    ok=$?
-    if [ "${ok}" = "0" ]
-    then
-        echo "
-****************** REUSSITE DU TEST"
-    else
-        all_ok="1"
-        echo "
-****************** ECHEC DU TEST"
-    fi
-done
-echo "
-*****************"
-if [ "${all_ok}" = "0" ]
+
+"${binary}" < "${test_in}" | tee "${test_result}"
+diff -B --suppress-common-lines "${test_result}" "${test_out}"
+ok=$?
+if [ "${ok}" = "0" ]
 then
-    echo "REUSSITE COMPLETE"
+    echo "
+****************** REUSSITE DU TEST"
 else
-    echo "ECHEC (COMPLETE OU PARTIELLE)"
+    echo "
+****************** ECHEC DU TEST"
 fi
-echo "******************"
-rm out.txt
+
+rm "${test_result}"
+exit ${ok}
 

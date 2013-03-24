@@ -1,6 +1,0 @@
-# depslib dependency file v1.0
-1360365320 source:/home/koulben/Développements/codingame/20130129_test_1/main.cpp
-	<iostream>
-	<string>
-	<bitset>
-
