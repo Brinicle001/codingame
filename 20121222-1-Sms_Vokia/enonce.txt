@@ -1,0 +1,83 @@
+La compagnie Vokia, spécialisée dans la fabrication de téléphones portables, souhaite intégrer un programme dans ses appareils pour transcrire les SMS.
+
+
+Un SMS (Short Message Service) est un message composé de caractères ascii alphanumériques d'une longueur maximale de 160 caractères. L'alphabet latin comporte 26 lettres et les téléphones ne contiennent que 10 touches associées sur leur clavier. Plusieurs lettres sont donc associées à une même touche comme l'image du clavier ci-dessous.
+
+[1][2abc][def3]
+[4ghi][5jkl][mno6]
+[7pqrs][8tuv][wxyz9]
+[0 ]
+
+Le but du programme est d'analyser une séquence de touches et d'en extraire le message SMS correspondant.
+
+Par exemple :
+1 pression sur la touche 2 correspond au caractère a.
+2 pressions sur la touche 2 correspond au caractère b.
+3 pressions sur la touche 2 correspond au caractère c.
+4 pressions sur la touche 2 correspond au caractère 2.
+Une cinquième pression sur la touche 2 affiche de nouveau le caractère a, etc...
+
+Pour écrire deux lettres consécutives appartenant à la même touche, l'utilisateur doit faire une petite pause entre 2 pressions sur cette touche. Cette pause sera représentée par le caractère espace.
+Par exemple, la séquence 2 puis 2 puis pause (espace) puis 2 correspond au SMS ba.
+
+1 Pression sur la touche 0 affiche le caractère espace.
+2 pressions sur la touche 0 affiche le caractère 0.
+3 pressions sur la touche 0 affiche le caractère espace, etc...
+
+Chaque pression sur une touche correspond en priorité à une lettre associée, dans l'ordre alphabétique puis au chiffre correspondant à la touche.
+
+La touche 1 ne correspond qu'au chiffre 1.
+
+La longueur maximale du message est de 160 caractères. Les caractères suivants sont ignorés.
+
+ENTRÉE :
+Ligne 1 : le nombre N de caractères dans la séquence.
+Ligne 2 : séquence de N caractères (représentés par des caractères de 0 à 9 et des espaces)
+
+SORTIE :
+Le message SMS (en minuscule) de 160 caractères maximum. 
+
+CONTRAINTES :
+0 < N < 10000
+
+EXEMPLE :
+Entrée
+3
+623
+Sortie
+mad
+
+Entrée
+11
+62777666222
+Sortie
+maroc
+
+Entrée
+14
+4433555 555666
+Sortie
+hello
+
+Entrée
+9
+224444088
+Sortie
+b4 u
+Mémoire RAM disponible : 256Mo
+Durée maximum d’exécution : 1 secondes
+
+    Le programme doit lire les entrées depuis l’entrée standard
+    Le programme doit écrire la réponse dans la sortie standard
+    Le programme doit fonctionner dans l’environnement de test fourni
+
+Fichiers fournis dans le script de test :
+Une pression par touche : in1.txt out1.txt
+Plusieurs pressions par touche : in2.txt out2.txt
+Lettres consécutives sur même touche : in3.txt out3.txt
+Utilisation d'espaces : in4.txt out4.txt
+Une simple touche : in5.txt out5.txt
+Tous les caractères possibles : in6.txt out6.txt
+SMS trop long (à couper) : in7.txt out7.txt
+SMS complet : in8.txt out8.txt
+Séquence de caractères très longue. N proche de 10000 : in9.txt out9.txt

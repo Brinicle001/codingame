@@ -1,0 +1,70 @@
+Un opérateur Internet projette de raccorder un parc d'entreprises à la fibre optique. La zone à couvrir est large et il vous demande d'écrire un programme qui permettra de calculer la longueur minimale de câble de fibre optique nécessaire pour relier l'ensemble des bâtiments.
+
+Pour la mise en œuvre des travaux, l'opérateur a des contraintes techniques qui l'obligent à procéder ainsi :
+Un câble principal traversera le parc d'Ouest en Est (depuis la position x du bâtiment le plus à l'Ouest jusqu'à la position x du bâtiment le plus à l'Est).
+Pour chaque bâtiment, un câble dédié viendra se relier au câble principal par un chemin minimal (Nord ou Sud), comme le montre la figure 1.
+
+y
+^          M
+|   M      |          M
+|   |  M   |   M      |
+|   |  |   |   |      |
+|   ____________________
+|    |   |   |    |    |
+|    M   |   M    |    |
+|        M        M    M
+0------------------------>x
+
+Fig. 1
+Dans cet exemple, le tracé en vert représente les câbles.
+
+La longueur minimale va donc dépendre de la position du câble principal.
+
+ENTRÉE :
+Ligne 1 : le nombre N de bâtiments à relier à la fibre optique
+Sur les N lignes suivantes : Les coordonnées x et y des bâtiments
+
+SORTIE :
+La longueur minimale L de câble nécessaire pour relier tous les bâtiments. Autrement dit, la longueur du câble principal plus celles des câbles dédiés aux bâtiments.
+Les bâtiments ayant la même position x ne doivent en aucun cas partager le même câble dédié.
+
+CONTRAINTES :
+0 < N ≤ 100000
+0 ≤ L ≤ 263
+-230 ≤ x ≤ 230
+-230 ≤ y ≤ 230
+
+EXEMPLE 1 :
+Entrée
+3
+0 0
+1 1
+2 2
+Sortie
+4
+
+EXEMPLE 2 :
+Entrée
+3
+1 2
+0 0
+2 2
+Sortie
+4
+
+Mémoire RAM disponible : 256Mo
+Durée maximum d’exécution : 1 secondes
+
+    Le programme doit lire les entrées depuis l’entrée standard
+    Le programme doit écrire la réponse dans la sortie standard
+    Le programme doit fonctionner dans l’environnement de test fourni
+
+Fichiers fournis dans le script de test :
+Exemple 1 : in1.txt out1.txt
+Exemple 2 : in2.txt out2.txt
+Exemple 3 : in3.txt out3.txt
+Exemple 4 : in4.txt out4.txt
+Exemple 5 : in5.txt out5.txt
+Exemple 6 : in6.txt out6.txt
+Exemple 7 : in7.txt out7.txt
+Exemple 8 : in8.txt out8.txt

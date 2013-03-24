@@ -1,0 +1,86 @@
+Vous venez d'être affecté au centre d'analyse et de supervision d'un nouveau parc d'attraction. Votre mission est d'estimer chaque jour quelle vont être les recettes de la journée pour chaque manège.
+Vous commencez par vous intéresser aux montagnes russes.
+ 
+
+Vous remarquez que les montagnes russes plaisent tellement aux gens que dès qu'ils ont fini un tour de manège, ils ne peuvent s’empêcher de revenir pour un nouveau tour.
+ 
+
+    Les personnes viennent faire la queue devant l'attraction.
+    Elles peuvent soit être seules, soit être en groupe. Lorsque des groupes sont dans la queue, ils veulent forcément monter ensemble à bord, sans être séparés.
+    Les personnes ne se doublent jamais dans la file d'attente.
+    Dès qu'il n'y a plus assez de place dans l'attraction pour le prochain groupe dans la queue, le manège démarre. (Il n'est donc pas toujours plein).
+    Dès que le tour de manège est terminé, les groupes qui en sortent retournent dans la file d'attente dans le même ordre.
+
+Le manège contient un nombre L limite de places.
+Le manège ne peut fonctionner que C fois dans une journée.
+La file d'attente contient un nombre N de groupes.
+Chaque groupe comporte un nombre Pi de personnes.
+Chaque personne dépense 1 dirham par tour de manège.
+
+Exemple avec L=3, C=3 et 4 groupes (N=4) de tailles [3,1,1,2]
+Tour 1 : Pour le premier tour de manège, seul le premier groupe peut monter et prend toutes les places.
+À la fin du tour, ce groupe retourne en fin de queue qui ressemble maintenant à [1,1,2,3].
+Gain du tour : 3 dirhams.
+Tour 2 : Au second tour, les 2 groupes de 1 personnes suivantes peuvent monter, laissant une place vide (le groupe de 2 personnes qui les suit ne peut pas se séparer).
+À la fin du tour, ils retournent en fin de file : [2,3,1,1]
+Gain du tour : 2 dirhams.
+Tour 3 : Pour le dernier tour (C=3), seul le groupe de 2 personnes peut entrer, laissant une place vide.
+Gain du tour : 2 dirhams.
+Gain total : 3+2+2 = 7 dirhams
+
+ENTRÉE : Ligne 1 : Les entiers L, C et N séparés par un espace.
+N lignes suivantes : Chaque ligne contient un entier Picorrespondant au nombre de personnes dans un groupe. Les lignes sont ordonnées comme dans la file d'attente. (Les premières lignes correspondent aux premiers groupes pouvant monter).
+
+SORTIE :
+Un entier correspondant au nombre de dirham gagnés en fin de journée grâce aux montagnes russes (après C tours de manèges)
+
+CONTRAINTES :
+Pi ≤ L
+1 ≤ L ≤ 109
+1 ≤ C ≤ 108
+1 ≤ N ≤ 10000
+1 ≤ P ≤ 107
+
+EXEMPLE :
+Entrée
+3 3 4
+3
+1
+1
+2
+Sortie
+7
+ 
+ 
+Entrée
+5 3 4
+2
+3
+5
+4
+Sortie
+14
+ 
+ 
+Entrée
+10 100 1
+1
+Sortie
+100
+ 
+Mémoire RAM disponible : 256Mo
+Durée maximum d’exécution : 1 secondes
+
+    Le programme doit lire les entrées depuis l’entrée standard
+    Le programme doit écrire la réponse dans la sortie standard
+    Le programme doit fonctionner dans l’environnement de test fourni
+
+Fichiers fournis dans le script de test :
+Cas simple : in1.txt out1.txt
+1000 groupes de quelques personnes : in2.txt out2.txt
+Les mêmes groupes passent plusieurs fois dans la journée : in3.txt out3.txt
+Toute les personnes rentrent dans le wagon en 1 fois : in4.txt out4.txt
+Gros gains dans la journée (> 2^32) : in5.txt out5.txt
+Fonctionne avec un large jeu de données : in6.txt out6.txt
+	
+	

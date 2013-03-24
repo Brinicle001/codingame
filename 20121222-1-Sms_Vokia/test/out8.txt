@@ -1,0 +1,1 @@
+this is a simple sms test shorter than 160 chars and used to validate the code answer of the exercise with quite all test cases

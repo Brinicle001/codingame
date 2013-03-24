@@ -1,0 +1,38 @@
+L’Hippodrome de Casablanca organise un nouveau type de course de chevaux : les duels. Lors d’un duel, seulement deux chevaux participent à la course.
+ 
+
+Pour que la course soit intéressante, il faut essayer de sélectionner deux chevaux qui ont une puissance similaire.
+
+Écrivez un programme qui, à partir d’un ensemble donné de puissances, identifie les deux puissances les plus proches et affiche leur écart avec un nombre entier positif.
+ 
+ENTRÉE :
+Ligne 1 : le nombre N de chevaux
+Les N Lignes suivantes : la puissance Pi d'un cheval. Pi est un entier.
+ 
+SORTIE :
+La différence D entre les deux puissances les plus proches. D est un entier positif.
+ 
+CONTRAINTES :
+1 < N  < 10000
+0 < Pi ≤ 1000000
+ 
+EXEMPLE :
+Entrée
+3
+5
+8
+9
+Sortie
+1
+ 
+Mémoire RAM disponible : 256Mo
+Durée maximum d’exécution : 1 secondes
+
+    Le programme doit lire les entrées depuis l’entrée standard
+    Le programme doit écrire la réponse dans la sortie standard
+    Le programme doit fonctionner dans l’environnement de test fourni
+
+Fichiers fournis dans le script de test :
+Cas simple : in1.txt out1.txt
+Chevaux dans le désordre : in2.txt out2.txt
+Nombreux chevaux : in3.txt out3.txt
