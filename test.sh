@@ -9,6 +9,9 @@ test_number="$3"
 test_in="${test_dir}/in${test_number}.txt"
 test_out="${test_dir}/out${test_number}.txt"
 test_result="out_$$.txt"
+time_result="time_$$.txt"
+
+time_limit="1.00"
 
 if [ ! -f "${binary}" ]
 then
@@ -42,18 +45,25 @@ then
 fi
 
 
-"${binary}" < "${test_in}" | tee "${test_result}"
+/usr/bin/time -f %e -o "${time_result}" "${binary}" < "${test_in}" | tee "${test_result}"
 diff -B --suppress-common-lines "${test_result}" "${test_out}"
 ok=$?
 if [ "${ok}" = "0" ]
 then
-    echo "
+    echo "${time_limit}" >> "${time_result}"
+    if [ "`sort "${time_result}" | head -n1`" = "${time_limit}" ]
+    then
+        echo "
+****************** REUSSITE PARTIELLE DU TEST (DEPASSEMENT DU TEMPS)"
+    else
+        echo "
 ****************** REUSSITE DU TEST"
+    fi
 else
     echo "
 ****************** ECHEC DU TEST"
 fi
 
-rm "${test_result}"
+rm -f "${test_result}" "${time_result}"
 exit ${ok}
 
